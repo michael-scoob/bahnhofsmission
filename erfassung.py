@@ -1,6 +1,7 @@
-# app1.py
-from class_person import person 
-import streamlit as st
+# erfassung.py
+from person import person 
+from database import database
+import streamlit as st 
 
 def app():
     st.subheader('Personen erfassen')
@@ -65,6 +66,8 @@ def app():
         st.write(str(person_data[i]))
         
     if st.button("Übernehmen",key=c):
+        db = database()
+        db.add_persondata(gender,age,situation[0])
         st.text("Werte übernommen!")
     else:
         st.text(" ")

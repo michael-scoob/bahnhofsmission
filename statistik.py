@@ -3,6 +3,7 @@ import streamlit as st
 import datetime
 import pandas as pd
 import numpy as np
+from database import database
 
 def app():
     st.title('Statistik')
@@ -16,3 +17,10 @@ def app():
     columns=['a', 'b', 'c'])
     st.line_chart(chart_data)
 
+    if st.button("Daten anschauen!",key=d):
+        db = database()
+        db_data = db.getAllData()
+        st.text(db_data)
+
+
+    

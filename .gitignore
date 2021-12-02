@@ -1,3 +1,4 @@
 venv
 .streamlit/secrets.toml
-data.db
+user_data.db
+person_data.db

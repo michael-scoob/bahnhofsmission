@@ -6,7 +6,7 @@ import sqlite3
 class auth():
     def __init__(self) -> None:
         # DB Management
-        self.conn = sqlite3.connect('data.db')
+        self.conn = sqlite3.connect('user_data.db')
         self.c = self.conn.cursor()
         self.Login_status = False
         pass
