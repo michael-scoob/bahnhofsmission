@@ -29,6 +29,8 @@ https://docs.streamlit.io/library/get-started/installation
 ## Page setup 
 https://blog.streamlit.io/introducing-new-layout-options-for-streamlit/
 
+https://docs.streamlit.io/library/api-reference/utilities/st.set_page_config
+
 ## Widgets
 https://docs.streamlit.io/library/api-reference/widgets
 
