@@ -25,7 +25,10 @@ PAGES = {
 
 # Page: Home
 st.title("Meine Bahnhofsmission")
-msg="Statistik Anwendung für die Bahnhofsmission in FFM um die Besucher und die vermittelten Leistunge zur erfassen"
+msg="Statistik Anwendung für die Bahnhofsmission um \
+    die Besucher und die vermittelten Leistunge zur erfassen \
+    und statistisch auszuwerten."
+    
 st.write(msg)
 
 # Login

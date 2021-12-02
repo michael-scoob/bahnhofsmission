@@ -65,4 +65,6 @@ def app():
         st.write(str(person_data[i]))
         
     if st.button("Übernehmen",key=c):
-        st.balloons()
+        st.text("Werte übernommen!")
+    else:
+        st.text(" ")
