@@ -1,9 +1,18 @@
 # app2.py
 import streamlit as st
 import datetime
+import pandas as pd
+import numpy as np
+
 def app():
-    st.title('APP2')
-    st.write('Welcome to app2')
-    d = st.date_input("When's your birthday", datetime.date(2019, 7, 6))
-    st.write('Your birthday is:', d)
+    st.title('Statistik')
+    st.write('Auswertung der Daten über auszuwählende Zeiträume. Bitte einen Zeitraum wählen!')
+    d = st.date_input("Datum wählen", datetime.date(2019, 7, 6))
+    st.write('Ausgewältes Datum ist:', d)
     
+    st.title('Demo Daten')
+    chart_data = pd.DataFrame(  
+    np.random.randn(20, 3),
+    columns=['a', 'b', 'c'])
+    st.line_chart(chart_data)
+
