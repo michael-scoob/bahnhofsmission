@@ -25,3 +25,12 @@ virtualenv --python C:\Path\To\Python\python.exe venv
 ## Doc Streamlit
 
 https://docs.streamlit.io/library/get-started/installation
+
+## Page setup 
+https://blog.streamlit.io/introducing-new-layout-options-for-streamlit/
+
+## Widgets
+https://docs.streamlit.io/library/api-reference/widgets
+
+# Connect Streamlit to PostgreSQL
+https://docs.streamlit.io/knowledge-base/tutorials/databases/postgresql

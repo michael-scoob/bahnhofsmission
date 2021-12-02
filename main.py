@@ -15,7 +15,7 @@ PAGES = {
 }
 
 # Page: Home
-st.title("MyBahnhofsmission")
+st.title("Meine Bahnhofsmission")
 msg="Statistik Anwendung für die Bahnhofsmission in FFM um die Besucher und die vermittelten Leistunge zur erfassen"
 st.write(msg)
 
