@@ -13,7 +13,7 @@ from auth import auth
 st.set_page_config(
     page_title="Bahnhofsmission",
     page_icon="🧊",
-    layout="centered", #"wide",
+    layout= "wide" ,#"centered", #"wide",
     initial_sidebar_state="expanded",
     )
 

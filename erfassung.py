@@ -67,7 +67,10 @@ def app():
         
     if st.button("Übernehmen",key=c):
         db = database()
-        db.add_persondata(gender,age,situation[0])
+        live = ""
+        for n in situation:
+            live += ';'+ n
+        db.add_persondata(gender,age,live)
         st.text("Werte übernommen!")
     else:
         st.text(" ")
