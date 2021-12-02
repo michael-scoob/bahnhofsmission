@@ -6,17 +6,25 @@ import streamlit as st
 import app1
 import app2
 
-st.title("MyBahnhofsmission")
+# page setup
+#st.set_page_config(layout="wide")
 
-msg="Test App für die Bahnhofsmission in FFM"
-st.write(msg)
-  
 PAGES = {
-    "App1": app1,
-    "App2": app2
+    "Erfassen"  : app1,
+    "Statistik" : app2
 }
 
+# Page: Home
+st.title("MyBahnhofsmission")
+msg="Statistik Anwendung für die Bahnhofsmission in FFM um die Besucher und die vermittelten Leistunge zur erfassen"
+st.write(msg)
+
+# navigation to page
+st.markdown("_____")
+
 st.sidebar.title('Navigation')
-selection = st.sidebar.radio("Go to", list(PAGES.keys()))
+selection = st.sidebar.radio(" ", list(PAGES.keys()))
 page = PAGES[selection]
 page.app()
+
+st.markdown("_____")
