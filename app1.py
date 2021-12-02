@@ -3,7 +3,7 @@ from class_person import person
 import streamlit as st
 
 def app():
-    st.title('Personen erfassen')
+    st.subheader('Personen erfassen')
     st.write('Hier bitte Geschlecht, Alter und Lebenslage erfassen. Zum übernehmen in die Statistik bitte Button "Übernehmen" drücken.')
     
     # container

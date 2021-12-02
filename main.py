@@ -7,8 +7,8 @@ import app1
 import app2
 
 # page setup
-#st.set_page_config(layout="wide")
 
+#st.set_page_config(layout="wide")
 PAGES = {
     "Erfassen"  : app1,
     "Statistik" : app2
