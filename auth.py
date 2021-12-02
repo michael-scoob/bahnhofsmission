@@ -8,6 +8,7 @@ class auth():
         # DB Management
         self.conn = sqlite3.connect('data.db')
         self.c = self.conn.cursor()
+        self.Login_status = False
         pass
     
     def make_hashes(self,password):
@@ -36,17 +37,20 @@ class auth():
         data = self.c.fetchall()
         return data
 
+    def getLoginStatus(self):
+        return self.Login_status
+    
     def auth_run(self):
 
-        menu = ["Login","SignUp"]
+        menu = ["SignUp","Login"]
         choice = st.sidebar.selectbox("Menu",menu)
 
         if choice == "Login":
-            #st.subheader("Login Section")
-
+            #st.subheader("Login um diese exelente App zu nutzen!")
             username = st.sidebar.text_input("User Name")
             password = st.sidebar.text_input("Password",type='password')
             if st.sidebar.checkbox("Login"):
+                
                 # if password == '12345':
                 self.create_usertable()
                 hashed_pswd = self.make_hashes(password)
@@ -54,9 +58,9 @@ class auth():
                 result = self.login_user(username,self.check_hashes(password,hashed_pswd))
                 if result:
 
-                    st.success("Logged In as {}".format(username))
+                    #st.success("Logged In as {}".format(username))
                     
-                    return True
+                    self.Login_status = True
                     # task = st.selectbox("Task",["Add Post","Analytics","Profiles"])
                     # if task == "Add Post":
                     #     st.subheader("Add Your Post")
@@ -70,10 +74,10 @@ class auth():
                     #     st.dataframe(clean_db)
                 else:
                     st.warning("Incorrect Username/Password")
-                    return False
+                   
 
         elif choice == "SignUp":
-            st.subheader("Create New Account")
+            st.subheader("Hier kann ein neuer Account angeegt werden ...")
             new_user = st.text_input("Username")
             new_password = st.text_input("Password",type='password')
 

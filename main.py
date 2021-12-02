@@ -4,8 +4,8 @@ import streamlit as st
 
 
 # module import
-import app1
-import app2
+import erfassung
+import statistik
 from auth import auth
 
 # page setup
@@ -19,8 +19,8 @@ st.set_page_config(
 
 # add pages here
 PAGES = {
-    "Erfassen"  : app1,
-    "Statistik" : app2
+    "Erfassen"  : erfassung,
+    "Statistik" : statistik
 }
 
 # Page: Home
@@ -32,7 +32,7 @@ st.write(msg)
 a=auth()
 login_status = a.auth_run()
 
-if login_status == True:
+if a.getLoginStatus() == True:
     # navigation to page
     st.markdown("_____")
 
