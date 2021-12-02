@@ -4,7 +4,7 @@ import streamlit as st
 
 def app():
     st.title('Personen erfassen')
-    st.write('Hier bitte Geschlecht, Alter und Lebenslage erfassen. Zum übernehmen in die Statistik bitte Buchen drücken.')
+    st.write('Hier bitte Geschlecht, Alter und Lebenslage erfassen. Zum übernehmen in die Statistik bitte Button "Übernehmen" drücken.')
     
     # container
     c1, c2, c3= st.columns((1, 1, 1))
