@@ -36,3 +36,6 @@ https://docs.streamlit.io/library/api-reference/widgets
 
 # Connect Streamlit to PostgreSQL
 https://docs.streamlit.io/knowledge-base/tutorials/databases/postgresql
+
+# How to Add A Login & Sign-up Section 
+https://blog.jcharistech.com/2020/05/30/how-to-add-a-login-section-to-streamlit-blog-app/

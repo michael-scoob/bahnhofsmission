@@ -1,47 +1,84 @@
 import streamlit as st
+import pandas as pd
+import hashlib
+import sqlite3 
 
 class auth():
     def __init__(self) -> None:
+        # DB Management
+        self.conn = sqlite3.connect('data.db')
+        self.c = self.conn.cursor()
         pass
     
-    def is_authenticated(password):
-        return password == "admin"
+    def make_hashes(self,password):
+        return hashlib.sha256(str.encode(password)).hexdigest()
 
+    def check_hashes(self,password,hashed_text):
+        if self.make_hashes(password) == hashed_text:
+            return hashed_text
+        return False
 
-    def generate_login_block():
-        block1 = st.empty()
-        block2 = st.empty()
+    # DB  Functions
+    def create_usertable(self):
+        self.c.execute('CREATE TABLE IF NOT EXISTS userstable(username TEXT,password TEXT)')
 
-        return block1, block2
+    def add_userdata(self,username,password):
+        self.c.execute('INSERT INTO userstable(username,password) VALUES (?,?)',(username,password))
+        self.conn.commit()
 
+    def login_user(self,username,password):
+        self.c.execute('SELECT * FROM userstable WHERE username =? AND password = ?',(username,password))
+        data = self.c.fetchall()
+        return data
 
-    def clean_blocks(blocks):
-        for block in blocks:
-            block.empty()
+    def view_all_users(self):
+        self.c.execute('SELECT * FROM userstable')
+        data = self.c.fetchall()
+        return data
 
+    def auth_run(self):
 
-    def login(blocks):
-        blocks[0].markdown("""
-                <style>
-                    input {
-                        -webkit-text-security: disc;
-                    }
-                </style>
-            """, unsafe_allow_html=True)
+        menu = ["Login","SignUp"]
+        choice = st.sidebar.selectbox("Menu",menu)
 
-        return blocks[1].text_input('Password')
+        if choice == "Login":
+            #st.subheader("Login Section")
 
+            username = st.sidebar.text_input("User Name")
+            password = st.sidebar.text_input("Password",type='password')
+            if st.sidebar.checkbox("Login"):
+                # if password == '12345':
+                self.create_usertable()
+                hashed_pswd = self.make_hashes(password)
 
-    def main():
-        st.header('Hello')
-        st.balloons()
+                result = self.login_user(username,self.check_hashes(password,hashed_pswd))
+                if result:
 
+                    st.success("Logged In as {}".format(username))
+                    
+                    return True
+                    # task = st.selectbox("Task",["Add Post","Analytics","Profiles"])
+                    # if task == "Add Post":
+                    #     st.subheader("Add Your Post")
 
-    login_blocks = generate_login_block()
-    password = login(login_blocks)
+                    # elif task == "Analytics":
+                    #     st.subheader("Analytics")
+                    # elif task == "Profiles":
+                    #     st.subheader("User Profiles")
+                    #     user_result = self.view_all_users()
+                    #     clean_db = pd.DataFrame(user_result,columns=["Username","Password"])
+                    #     st.dataframe(clean_db)
+                else:
+                    st.warning("Incorrect Username/Password")
+                    return False
 
-    if is_authenticated(password):
-        clean_blocks(login_blocks)
-        main()
-    elif password:
-        st.info("Please enter a valid password")
+        elif choice == "SignUp":
+            st.subheader("Create New Account")
+            new_user = st.text_input("Username")
+            new_password = st.text_input("Password",type='password')
+
+            if st.button("Signup"):
+                self.create_usertable()
+                self.add_userdata(new_user,self.make_hashes(new_password))
+                st.success("You have successfully created a valid Account")
+                st.info("Go to Login Menu to login")

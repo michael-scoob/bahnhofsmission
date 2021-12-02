@@ -6,7 +6,7 @@ import streamlit as st
 # module import
 import app1
 import app2
-#from auth import auth
+from auth import auth
 
 # page setup
 
@@ -23,18 +23,22 @@ PAGES = {
     "Statistik" : app2
 }
 
-
 # Page: Home
 st.title("Meine Bahnhofsmission")
 msg="Statistik Anwendung für die Bahnhofsmission in FFM um die Besucher und die vermittelten Leistunge zur erfassen"
 st.write(msg)
 
-# navigation to page
-st.markdown("_____")
+# Login
+a=auth()
+login_status = a.auth_run()
 
-st.sidebar.title('Navigation')
-selection = st.sidebar.radio(" ", list(PAGES.keys()))
-page = PAGES[selection]
-page.app()
+if login_status == True:
+    # navigation to page
+    st.markdown("_____")
 
-st.markdown("_____")
+    st.sidebar.title('Navigation')
+    selection = st.sidebar.radio(" ", list(PAGES.keys()))
+    page = PAGES[selection]
+    page.app()
+
+    st.markdown("_____")
