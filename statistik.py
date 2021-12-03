@@ -20,7 +20,7 @@ def app():
     if st.button("Daten anschauen!",key=d):
         db = database()
         db_data = db.getAllData()
-        st.text(db_data)
+        st.table(db_data)
 
 
     

@@ -2,6 +2,9 @@
 from person import person 
 from database import database
 import streamlit as st 
+import datetime
+
+db = database()
 
 def app():
     st.subheader('Personen erfassen')
@@ -54,9 +57,27 @@ def app():
         'Reisender',
         'alleinreisenden Kinde(er)'
         ],
-        ['Aufenthalt'])
+        ['mit sozialen Schwierigkeiten'],key=1)
 
-    p = person(gender,age,situation)
+    service = st.multiselect('Wir haben folgende Leistung erbracht ... ',
+        [   
+        'Aufenthalt',
+        'Gespräch/Beratung', 
+        'Krisenintervention', 
+        'Kontakt zu Dritten/Vermittlung an Dritte', 
+        'Gespräche/Kleine Hilfen/Auskünfte(inkl.Dusche & Toilette)',
+        'Materielle Hilfen',
+        'Übernachtung vermittelt',
+        'Zusammenarbeit mit/ Vermittlung an andere Bahnhofsmissionen',
+        'Hilfen im Reiseverkehr am Bahnhof',
+        'Mobile Reisehilfen',
+        'Kontakte mit Einrichtungen und Diensten  der Bahn und im Bahnhof'
+        'Übernachtung gewährt'
+        'Getränke (Portionen)'
+        ],
+        ['Aufenthalt'],key=2)
+
+    p = person(gender,age,situation,service)
     
     person_data = p.getData()
     
@@ -66,11 +87,17 @@ def app():
         st.write(str(person_data[i]))
         
     if st.button("Übernehmen",key=c):
-        db = database()
+        
         live = ""
+        service_data = ""
         for n in situation:
-            live += ';'+ n
-        db.add_persondata(gender,age,live)
+            live += ''+ n + ';'
+        for n in service:
+            service_data += ''+ n + ';'
+            
+        time = str(datetime.datetime.now())
+        db.add_persondata(time,gender,age,live,service_data)
         st.text("Werte übernommen!")
     else:
         st.text(" ")
+        
