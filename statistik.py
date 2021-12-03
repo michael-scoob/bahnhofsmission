@@ -11,11 +11,11 @@ def app():
     d = st.date_input("Datum wählen", datetime.date(2019, 7, 6))
     st.write('Ausgewältes Datum ist:', d)
     
-    st.title('Demo Daten')
-    chart_data = pd.DataFrame(  
-    np.random.randn(20, 3),
-    columns=['a', 'b', 'c'])
-    st.line_chart(chart_data)
+    # st.title('Demo Daten')
+    # chart_data = pd.DataFrame(  
+    # np.random.randn(20, 3),
+    # columns=['a', 'b', 'c'])
+    # st.line_chart(chart_data)
 
     if st.button("Daten anschauen!",key=d):
         db = database()

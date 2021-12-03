@@ -3,7 +3,7 @@ import sqlite3
 
 class database():
     def __init__(self) -> None:
-        self.conn_1 = sqlite3.connect('person_data.db')
+        self.conn_1 = sqlite3.connect('person_data.db',check_same_thread=False)
         self.c_1 = self.conn_1.cursor()
         self.create_persontable()
         pass

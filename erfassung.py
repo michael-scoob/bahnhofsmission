@@ -11,7 +11,7 @@ def app():
     st.write('Hier bitte Geschlecht, Alter und Lebenslage erfassen. Zum übernehmen in die Statistik bitte Button "Übernehmen" drücken.')
     
     # container
-    c1, c2, c3= st.columns((1, 1, 1))
+    c1, c2 = st.columns((1, 1))
 
     c = c1
     gender = ""
@@ -57,7 +57,7 @@ def app():
         'Reisender',
         'alleinreisenden Kinde(er)'
         ],
-        ['mit sozialen Schwierigkeiten'],key=1)
+        ['mit sozialen Schwierigkeiten'],key=11)
 
     service = st.multiselect('Wir haben folgende Leistung erbracht ... ',
         [   
@@ -75,7 +75,7 @@ def app():
         'Übernachtung gewährt'
         'Getränke (Portionen)'
         ],
-        ['Aufenthalt'],key=2)
+        ['Aufenthalt'],key=22)
 
     p = person(gender,age,situation,service)
     
@@ -86,7 +86,10 @@ def app():
     for i in range(len(person_data)):
         st.write(str(person_data[i]))
         
-    if st.button("Übernehmen",key=c):
+    c3, c4 = st.columns((1, 1))    
+    
+    
+    if c3.button("Übernehmen",key=c):
         
         live = ""
         service_data = ""
@@ -101,3 +104,17 @@ def app():
     else:
         st.text(" ")
         
+    if c4.button("Leistung übernehmen",key=c):
+        gender=";"
+        age=";"
+        live = ";"
+        service_data = ""
+
+        for n in service:
+            service_data += ''+ n + ';'
+            
+        time = str(datetime.datetime.now())
+        db.add_persondata(time,gender,age,live,service_data)
+        st.text("Leistung übernommen!")
+    else:
+        st.text(" ")
