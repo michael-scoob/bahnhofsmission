@@ -1,4 +1,5 @@
 # statistik.py
+from pandas.core.indexes.base import Index
 import streamlit as st
 import datetime
 import pandas as pd
@@ -14,8 +15,8 @@ def app():
     today = datetime.date.today()
     
     # Datum auswahl
-    sd = st.date_input("Start Datum wählen", today,key="sd")
-    ed = st.date_input("End Datum wählen", today,key="ed")
+    sd = st.date_input("Start Datum wählen", today,max_value=today,key="sd")
+    ed = st.date_input("End Datum wählen", today,max_value=today,key="ed")
 
     db = database()
     data = db.getAllData() #methode return a df 
@@ -28,6 +29,27 @@ def app():
     
     csv = convert_df(data)
 
+    # Graph
+    st.title('Leistungen')
+    
+    
+    df = pd.DataFrame(data,columns=['Leistung'])
+    #df.set_index(['Zeit'])
+    st.bar_chart(df)
+    
+    tdf = pd.DataFrame(data,columns=['Leistung']
+    ).set_index(data['Zeit'])
+    
+    st.write(tdf)
+    st.bar_chart(tdf)
+    
+    # tdata = pd.DataFrame({
+    # 'index': ['Cincinnati', 'San Francisco', 'Pittsburgh'],
+    # 'sports_teams': [6, 8, 9],
+    # }).set_index('index')
+    # st.write(tdata)
+    # st.bar_chart(tdata)
+
     st.download_button(
         label="Download",
         data=csv,
@@ -35,11 +57,7 @@ def app():
         mime='text/csv',
     )
     
-    # st.title('Demo Daten')
-    # chart_data = pd.DataFrame(  
-    # np.random.randn(20, 3),
-    # columns=['a', 'b', 'c'])
-    # st.line_chart(chart_data)
+
     
     #  
     if st.button("Daten anschauen!",key="dw"):

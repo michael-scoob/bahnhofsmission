@@ -94,6 +94,7 @@ def app():
     c3, c4 = st.columns((1, 1))    
     
     
+    
     if c3.button("Übernehmen",key=c):
         
         live = ""
@@ -103,7 +104,7 @@ def app():
         for n in service:
             service_data += ''+ n + ';'
             
-        time = str(datetime.datetime.now())
+        time = str(datetime.date.today())
         db.add_persondata(time,gender,age,live,service_data)
         st.text("Werte übernommen!")
     else:
@@ -117,8 +118,7 @@ def app():
 
         for n in service:
             service_data += ''+ n + ';'
-            
-        time = str(datetime.datetime.now())
+        time = str(datetime.date.today())    
         db.add_persondata(time,gender,age,live,service_data)
         st.text("Leistung übernommen!")
     else:
