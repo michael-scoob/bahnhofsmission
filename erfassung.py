@@ -2,7 +2,7 @@
 
 from backend.person import person as person
 from backend.database import database
-
+from backend.defines import DEFINES
 import streamlit as st 
 import datetime
 
@@ -45,39 +45,14 @@ def app():
         age='über 65'
         c.write('über 65')
         
-
+    person_atribute=DEFINES.getPersonAtributeList()
     situation = st.multiselect('Die Person befindet sich in den folgenden Lebenslage(n) ... ',
-        [   
-        'Aufenthalt',
-        'Ausländische Wanderarbeiter', 
-        'Kids on Tour ohne Angehörige', 
-        'mit sozialen Schwierigkeiten', 
-        'finanziellen Schwierigkeiten',
-        'psychische Erkrankung',
-        'körperliche Erkrankung',
-        'Migrationshintergrund',
-        'Behinderungen',
-        'Reisender',
-        'alleinreisenden Kinde(er)'
-        ],
+        person_atribute,
         ['mit sozialen Schwierigkeiten'],key=11)
 
+    service_list = DEFINES.getServiceList()
     service = st.multiselect('Wir haben folgende Leistung erbracht ... ',
-        [   
-        'Aufenthalt',
-        'Gespräch/Beratung', 
-        'Krisenintervention', 
-        'Kontakt zu Dritten/Vermittlung an Dritte', 
-        'Gespräche/Kleine Hilfen/Auskünfte(inkl.Dusche & Toilette)',
-        'Materielle Hilfen',
-        'Übernachtung vermittelt',
-        'Zusammenarbeit mit/ Vermittlung an andere Bahnhofsmissionen',
-        'Hilfen im Reiseverkehr am Bahnhof',
-        'Mobile Reisehilfen',
-        'Kontakte mit Einrichtungen und Diensten  der Bahn und im Bahnhof'
-        'Übernachtung gewährt'
-        'Getränke (Portionen)'
-        ],
+        service_list,
         ['Aufenthalt'],key=22)
 
     p = person(gender,age,situation,service)
