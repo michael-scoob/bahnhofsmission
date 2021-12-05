@@ -3,7 +3,7 @@ import streamlit as st
 import datetime
 import pandas as pd
 import numpy as np
-from database import database
+from backend.database import database
 
 def app():
     st.title('Statistik')

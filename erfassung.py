@@ -1,6 +1,8 @@
 # erfassung.py
-from person import person 
-from database import database
+
+from backend.person import person as person
+from backend.database import database
+
 import streamlit as st 
 import datetime
 
@@ -8,7 +10,8 @@ db = database()
 
 def app():
     st.subheader('Personen erfassen')
-    st.write('Hier bitte Geschlecht, Alter und Lebenslage erfassen. Zum übernehmen in die Statistik bitte Button "Übernehmen" drücken.')
+    st.write('Hier bitte Geschlecht, Alter und Lebenslage erfassen. Zur Übernahme in die Statistik bitte Button "Übernehmen" drücken. \
+        SIe haben die Möglichkeit auch nur die erbrachte Leistung zu übernehmen. Hierfür bitte "Nur Leistung übernehmen" drücken.')
     
     # container
     c1, c2 = st.columns((1, 1))
@@ -84,7 +87,9 @@ def app():
     st.subheader('Sie haben fogendes ausgewählt:')
     
     for i in range(len(person_data)):
-        st.write(str(person_data[i]))
+        msg = str(person_data[i])
+        msg = msg.replace("[]","")
+        st.info(str(msg))
         
     c3, c4 = st.columns((1, 1))    
     
@@ -104,7 +109,7 @@ def app():
     else:
         st.text(" ")
         
-    if c4.button("Leistung übernehmen",key=c):
+    if c4.button("Nur Leistung übernehmen",key=c):
         gender=";"
         age=";"
         live = ";"

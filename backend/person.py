@@ -8,10 +8,10 @@ class person():
     
     def getData(self):
         person=[
-                "Geschlecht: " + self.gender, 
-                "Alter: " +  self.age,
-                "Situation: "  + str(self.situation),
-                "Leistung: "   + str(self.service) 
+                "Geschlecht = " + self.gender, 
+                "Alter = " +  self.age,
+                "Lebenslage = "  + str(self.situation),
+                "Leistung = "   + str(self.service) 
                 
         ]
         return person

@@ -2,10 +2,9 @@
 # system import
 import streamlit as st
 
-
 # module import
-import erfassung
-import statistik
+import erfassung as erfassung
+import statistik as statistik
 from auth import auth
 
 # page setup
