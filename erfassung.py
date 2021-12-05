@@ -43,7 +43,7 @@ def app():
         c.write('über 65')
         
 
-    situation = st.multiselect('Menschen in einer Lebenslage mit ... ',
+    situation = st.multiselect('Die Person befindet sich in den folgenden Lebenslage(n) ... ',
         [   
         'Aufenthalt',
         'Ausländische Wanderarbeiter', 

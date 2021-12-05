@@ -3,12 +3,12 @@ import sqlite3
 
 class database():
     def __init__(self) -> None:
-        self.conn_1 = sqlite3.connect('person_data.db',check_same_thread=False)
+        self.conn_1 = sqlite3.connect('data/service_data.db',check_same_thread=False)
         self.c_1 = self.conn_1.cursor()
         self.create_persontable()
         pass
     
-    # Peronen und Service DB
+    # DB - Methodes
     def create_persontable(self):
         self.c_1.execute('CREATE TABLE IF NOT EXISTS persontable(daytime TEXT,gender TEXT,age TEXT, situation Text, leistung TEXT)')
     
