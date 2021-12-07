@@ -45,9 +45,9 @@ def app():
         age='über 65'
         c.write('über 65')
         
-    person_atribute=DEFINES.getPersonAtributeList()
+    person_atribute_list=DEFINES.getPersonAtributeList()
     situation = st.multiselect('Die Person befindet sich in den folgenden Lebenslage(n) ... ',
-        person_atribute,
+        person_atribute_list,
         ['mit sozialen Schwierigkeiten'],key=11)
 
     service_list = DEFINES.getServiceList()
@@ -67,8 +67,6 @@ def app():
         st.info(str(msg))
         
     c3, c4 = st.columns((1, 1))    
-    
-    
     
     if c3.button("Übernehmen",key=c):
         

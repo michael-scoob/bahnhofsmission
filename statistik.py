@@ -5,6 +5,7 @@ import datetime
 import pandas as pd
 import numpy as np
 from backend.database import database
+from backend.defines import DEFINES
 
 def app():
     st.title('Statistik')
@@ -18,6 +19,10 @@ def app():
     sd = st.date_input("Start Datum wählen", today,max_value=today,key="sd")
     ed = st.date_input("End Datum wählen", today,max_value=today,key="ed")
 
+    #for debug
+    st.write(sd)
+    st.write(ed)
+    
     db = database()
     data = db.getAllData() #methode return a df 
     
@@ -28,27 +33,20 @@ def app():
         return df.to_csv().encode('utf-8')
     
     csv = convert_df(data)
-
-    # Graph
-    st.title('Leistungen')
-    
-    
-    df = pd.DataFrame(data,columns=['Leistung'])
-    #df.set_index(['Zeit'])
-    st.bar_chart(df)
-    
-    tdf = pd.DataFrame(data,columns=['Leistung']
+    # Graph    
+    df = pd.DataFrame(data,columns=['Zeit','Leistung']
     ).set_index(data['Zeit'])
-    
-    st.write(tdf)
-    st.bar_chart(tdf)
-    
-    # tdata = pd.DataFrame({
-    # 'index': ['Cincinnati', 'San Francisco', 'Pittsburgh'],
-    # 'sports_teams': [6, 8, 9],
-    # }).set_index('index')
-    # st.write(tdata)
-    # st.bar_chart(tdata)
+    st.write(df)
+    # st.bar_chart(df)
+
+
+    service_list = DEFINES.getServiceList()#.append('Zeit')
+
+    time = df['Zeit']
+
+    service_df = pd.DataFrame(columns=service_list)
+    service_df['Datum'] = time
+    st.write(service_df)
 
     st.download_button(
         label="Download",
@@ -56,8 +54,6 @@ def app():
         file_name=str(today) + '.csv',
         mime='text/csv',
     )
-    
-
     
     #  
     if st.button("Daten anschauen!",key="dw"):

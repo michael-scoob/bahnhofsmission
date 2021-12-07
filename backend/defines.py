@@ -1,8 +1,7 @@
 
 class DEFINES():
     def __init__(self) -> None:
-        pass
-    
+        pass 
     def getServiceList():
         SERVICE_LIST=[        
             'Aufenthalt',
