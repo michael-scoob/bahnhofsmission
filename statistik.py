@@ -31,22 +31,36 @@ def app():
     def convert_df(df):
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
         return df.to_csv().encode('utf-8')
-    
     csv = convert_df(data)
-    # Graph    
-    df = pd.DataFrame(data,columns=['Zeit','Leistung']
-    ).set_index(data['Zeit'])
-    st.write(df)
-    # st.bar_chart(df)
 
+    # Create df with time and service from db data
+    db_df = pd.DataFrame(data,columns=['Zeit','Leistung'])
+    st.subheader("Database")
+    st.write(db_df)
+    
 
-    service_list = DEFINES.getServiceList()#.append('Zeit')
-
-    time = df['Zeit']
-
-    service_df = pd.DataFrame(columns=service_list)
-    service_df['Datum'] = time
+    # Get the define of services and create service df
+    service_list = DEFINES.getServiceList()
+    time = db_df['Zeit']
+    _df = pd.DataFrame(columns=service_list)
+    _df['Datum'] = time
+    service_df = pd.DataFrame(_df).set_index(_df['Datum'])
+    st.subheader("Leistungen")
     st.write(service_df)
+
+    # put and separete values of service into service df
+
+    # for index in range(service_df):
+    #     st.write(service_df[index])
+
+
+
+
+    # Get slice of dataframe by date
+    st.subheader("Eine Scheibe Leistung bitte!")
+    slice_df=service_df.loc[str(sd):str(ed)]
+    st.write(slice_df)
+
 
     st.download_button(
         label="Download",
