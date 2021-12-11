@@ -24,7 +24,11 @@ virtualenv --python C:\Path\To\Python\python.exe venv
 ```
 ## Doc Streamlit
 
+### Instatlatio
 https://docs.streamlit.io/library/get-started/installation
+
+### API Ref
+https://docs.streamlit.io/library/api-reference
 
 ## Page setup 
 https://blog.streamlit.io/introducing-new-layout-options-for-streamlit/

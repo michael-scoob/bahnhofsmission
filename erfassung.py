@@ -79,7 +79,8 @@ def app():
             
         time = str(datetime.date.today())
         db.add_persondata(time,gender,age,live,service_data)
-        st.text("Werte übernommen!")
+        c3.success("Werte übernommen!")
+        
     else:
         st.text(" ")
         
@@ -93,6 +94,6 @@ def app():
             service_data += ''+ n + ';'
         time = str(datetime.date.today())    
         db.add_persondata(time,gender,age,live,service_data)
-        st.text("Leistung übernommen!")
+        c4.success("Leistung übernommen!")
     else:
         st.text(" ")
