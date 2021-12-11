@@ -43,18 +43,31 @@ def app():
     service_list = DEFINES.getServiceList()
     time = db_df['Zeit']
     _df = pd.DataFrame(columns=service_list)
-    _df['Datum'] = time
-    service_df = pd.DataFrame(_df).set_index(_df['Datum'])
+    _df.insert(loc=0,column='Zeit',value=time)
+    service_df = pd.DataFrame(_df)#.set_index(_df['Datum'])
     st.subheader("Leistungen")
     st.write(service_df)
 
     # put and separete values of service into service df
 
-    # for index in range(service_df):
-    #     st.write(service_df[index])
+    for index in range(db_df.size):
+        st.write("Index: " + str(index))
+        value = str(db_df['Leistung'].iloc[index])
+        service_db_value_list =  value.split(';')
+
+        #ToDo - Listen vergleichen
+        for i in service_db_value_list:
+            for j in service_list:
+                if(i ==j):
+                    st.info("Gefunden: " + i)
+                    service_df[i]=str('X')
+                    st.write(service_df)
+                    break
 
 
+        #ToDo - Werte in service_df ablegen
 
+    #st.write(service_db_value_list)
 
     # Get slice of dataframe by date
     st.subheader("Eine Scheibe Leistung bitte!")
