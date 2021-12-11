@@ -57,10 +57,11 @@ def app():
 
         #ToDo - Listen vergleichen
         for i in service_db_value_list:
+            #i=index
             for j in service_list:
                 if(i ==j):
                     st.info("Gefunden: " + i)
-                    service_df[i]=str('X')
+                    service_df[i][index]=str('X')
                     st.write(service_df)
                     break
 
