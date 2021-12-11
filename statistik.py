@@ -50,7 +50,8 @@ def app():
 
     # put and separete values of service into service df
 
-    for index in range(db_df.size):
+    for index , row in db_df.iterrows():
+        st.write("DB Size: " + str(db_df))
         st.write("Index: " + str(index))
         value = str(db_df['Leistung'].iloc[index])
         service_db_value_list =  value.split(';')
@@ -61,7 +62,8 @@ def app():
             for j in service_list:
                 if(i ==j):
                     st.info("Gefunden: " + i)
-                    service_df[i][index]=str('X')
+                    st.write(service_df[i][index])
+                    service_df[i][index] =  1
                     st.write(service_df)
                     break
 
