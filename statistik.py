@@ -16,12 +16,13 @@ def app():
     today = datetime.date.today()
     
     # Datum auswahl
-    sd = st.date_input("Start Datum wählen", today,max_value=today,key="sd")
-    ed = st.date_input("End Datum wählen", today,max_value=today,key="ed")
+    st.subheader("Leitungen im Zeitraum suchen ...")
+    c1, c2 = st.columns((1, 1)) 
+    sd = c1.date_input("Von ", today,max_value=today,key="sd")
+    ed = c2.date_input("Bis", today,max_value=today,key="ed")
 
-    #for debug
-    st.write(sd)
-    st.write(ed)
+    if ed < sd:
+        st.info('Bitte Zeitraum prüfen!')
     
     db = database()
     data = db.getAllData() #methode return a df 
@@ -35,8 +36,8 @@ def app():
 
     # Create df with time and service from db data
     db_df = pd.DataFrame(data,columns=['Zeit','Leistung'])
-    st.subheader("Database")
-    st.write(db_df)
+    # st.subheader("Database")
+    # st.write(db_df)
     
 
     # Get the define of services and create service df
@@ -62,22 +63,26 @@ def app():
             for j in service_list:
                 if(i ==j):
                     #st.info("Gefunden: " + i)
-                    service_df[i][index] =  1
+                    service_df[i][index] =  str('X')
                     #st.write(service_df)
                     break
+                    
 
-    st.write(service_df)
+    #st.write(service_df)
 
         #ToDo - Werte in service_df ablegen
 
     #st.write(service_db_value_list)
 
     # Get slice of dataframe by date
-    st.subheader("Eine Scheibe Leistung bitte!")
-    slice_df=service_df.loc[str(sd):str(ed)]
-    st.write(slice_df)
+    service_time_df=service_df.set_index('Zeit')
+    #st.write(service_time_df)
+    timeslice =service_time_df.loc[str(sd):str(ed)]
+    #timeslice =service_time_df.loc[str(datetime.date.today):str(datetime.date.today)]
+    #st.write('Zeitraum von ' + str(sd) + " bis " + str(ed) )
+    st.write(timeslice)
 
-
+    st.subheader("Alle Daten downloaden ")
     st.download_button(
         label="Download",
         data=csv,
