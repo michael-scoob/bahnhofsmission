@@ -1,9 +1,11 @@
 # statistik.py
+from json import encoder
 from pandas.core.indexes.base import Index
 import streamlit as st
 import datetime
 import pandas as pd
 import numpy as np
+import altair as alt
 from backend.database import database
 from backend.defines import DEFINES
 
@@ -36,9 +38,6 @@ def app():
 
     # Create df with time and service from db data
     db_df = pd.DataFrame(data,columns=['Zeit','Leistung'])
-    # st.subheader("Database")
-    # st.write(db_df)
-    
 
     # Get the define of services and create service df
     service_list = DEFINES.getServiceList()
@@ -46,40 +45,29 @@ def app():
     _df = pd.DataFrame(columns=service_list)
     _df.insert(loc=0,column='Zeit',value=time)
     service_df = pd.DataFrame(_df)#.set_index(_df['Datum'])
-    st.subheader("Leistungen")
-    #st.write(service_df)
+    st.subheader("Leistungsübersicht")
 
     # put and separete values of service into service df
 
     for index , row in db_df.iterrows():
-        #st.write("DB Text in dem gesucht wird ..: \n" + str(db_df))
-        #st.write("Index: " + str(index))
         value = str(db_df['Leistung'].iloc[index])
         service_db_value_list =  value.split(';')
 
-        #ToDo - Listen vergleichen
+        #Wert in Liste suchen und mit X markieren
         for i in service_db_value_list:
-            #i=index
             for j in service_list:
-                if(i ==j):
-                    #st.info("Gefunden: " + i)
-                    service_df[i][index] =  str('X')
-                    #st.write(service_df)
+                if(i == j):
+                    service_df[i][index] =  1
                     break
-                    
 
-    #st.write(service_df)
-
-        #ToDo - Werte in service_df ablegen
-
-    #st.write(service_db_value_list)
-
+    
     # Get slice of dataframe by date
     service_time_df=service_df.set_index('Zeit')
-    #st.write(service_time_df)
     timeslice =service_time_df.loc[str(sd):str(ed)]
-    #timeslice =service_time_df.loc[str(datetime.date.today):str(datetime.date.today)]
-    #st.write('Zeitraum von ' + str(sd) + " bis " + str(ed) )
+    timeslice = timeslice.sort_index()
+    timeslice = timeslice.groupby(timeslice.index)[service_list].sum()
+    st.bar_chart(timeslice[service_list])
+    st.subheader("Summe der Leistung im Zeitraum")
     st.write(timeslice)
 
     st.subheader("Alle Daten downloaden ")
