@@ -1,5 +1,4 @@
+__pycache__
 venv
-data
+data/*
 .streamlit/secrets.toml
-data/user_data.db
-data/service_data.db
