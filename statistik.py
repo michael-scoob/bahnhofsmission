@@ -9,10 +9,6 @@ import altair as alt
 from backend.database import database
 from backend.defines import DEFINES
 
-# WORK
-WORK = False
-
-
 def app():
     st.title('Statistik')
     st.write('Auswertung der Daten über auszuwählende Zeiträume. Bitte einen Zeitraum wählen!')
@@ -36,16 +32,17 @@ def app():
         # Personen Statistik
         st.markdown('----')
         #st.subheader('Personen Statistik')
-        st.title("Besucher gesamt" )
+        
 
         people_df = pd.DataFrame(data,columns=['Zeit','Geschlecht','Alter'])
         #people_df = people_df.set_index('Zeit')
         #st.write(people_df)
         
+        
+        # Geschlecht abfragen
         mann = 0
         frau = 0
         divers = 0
-
 
         for index, row in people_df.iterrows():
             s = str(people_df['Geschlecht'].iloc[index])
@@ -57,8 +54,9 @@ def app():
                 mann = mann + 1
             elif s == 'Frau':
                 frau = frau + 1
-        st.write("Männer: " + str(mann) + " | Frauen: " + str(frau) + " | Divers: " + str(divers))
+        #st.write("Männer: " + str(mann) + " | Frauen: " + str(frau) + " | Divers: " + str(divers))
 
+        # Alter abfrage
         unter_18 = 0
         bis_27 = 0
         bis_65 = 0
@@ -76,19 +74,34 @@ def app():
                 über_65 = über_65 + 1
             else: 
                 people_df['Alter'].iloc[index] = str('0')
-            
+        #st.write("unter 18: " + str(unter_18) + " | bis 27: " + str(bis_27) + " |  bis 65: " + str(bis_65) + " | über 65: " + str(über_65))
 
-        st.write("unter 18: " + str(unter_18) + " | bis 27: " + str(bis_27) + " |  bis 65: " + str(bis_65) + " | über 65: " + str(über_65))
+        st.title("Besucher gesamt" )
+        
+        time = [str(sd)]
+        
+        people_list=[]
+        people_list.append([mann,frau,divers])
+        people_list_df = pd.DataFrame(people_list,columns=['Männlich', 'Weiblich','Divers'])
+        
+        
+        people_list_df.insert(loc=0,column='Zeit',value=time)
+        people_list_df = people_list_df.set_index('Zeit')
+        st.bar_chart(people_list_df)
+        st.write(people_list_df)
+        
+        st.title("Altersgruppen")
+        age_list=[]
+        age_list.append([unter_18,bis_27,bis_65,über_65])
+        age_list_df = pd.DataFrame(age_list,columns=['unter 18', 'bis 27','bis 65','über 65'])
 
-        if WORK:
-            people_time_df=people_df.set_index('Zeit')
-            timeslice_df =people_time_df.loc[str(sd):str(ed)]
-            timeslice_df = timeslice_df.sort_index()
-            st.write(timeslice_df)
+        age_list_df.insert(loc=0,column='Zeit',value=time)
+        age_list_df = age_list_df.set_index('Zeit')
+        st.bar_chart(age_list_df)
+        st.write(age_list_df)
+        
 
-            st.bar_chart(timeslice_df)
-
-            st.markdown('----')
+        st.markdown('----')
 
 
 
@@ -113,7 +126,7 @@ def app():
         _df.insert(loc=0,column='Zeit',value=time)
         service_df = pd.DataFrame(_df)
         st.markdown('----')
-        st.subheader("Leistungsübersicht")
+        st.title("Leistungsübersicht")
 
         # put and separete values of service into service df
 
@@ -136,7 +149,6 @@ def app():
         st.bar_chart(timeslice[service_list])
         st.subheader("Summe der Leistung im Zeitraum")
         st.write(timeslice)
-
 
         st.markdown('----')
         st.subheader("Alle Daten downloaden ")

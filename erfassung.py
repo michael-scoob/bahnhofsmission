@@ -9,6 +9,7 @@ import datetime
 db = database()
 
 def app():
+
     st.subheader('Personen erfassen')
     st.write('Hier bitte Geschlecht, Alter und Lebenslage erfassen. Zur Übernahme in die Statistik bitte Button "Übernehmen" drücken. \
         SIe haben die Möglichkeit auch nur die erbrachte Leistung zu übernehmen. Hierfür bitte "Nur Leistung übernehmen" drücken.')
@@ -55,6 +56,9 @@ def app():
         service_list,
         ['Aufenthalt'],key=22)
 
+
+
+
     p = person(gender,age,situation,service)
     
     person_data = p.getData()
@@ -80,7 +84,6 @@ def app():
         time = str(datetime.date.today())
         db.add_persondata(time,gender,age,live,service_data)
         c3.success("Werte übernommen!")
-        
     else:
         st.text(" ")
         
