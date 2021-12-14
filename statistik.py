@@ -11,7 +11,7 @@ from backend.defines import DEFINES
 
 def app():
     st.title('Statistik')
-    st.write('Auswertung der Daten über auszuwählende Zeiträume. Bitte einen Zeitraum wählen!')
+    st.write('Auswertung der Daten über auszuwählende Zeiträume.')
     year=str(datetime.date.year)
     month=str(datetime.date.month)
     day=str(datetime.date.day)
@@ -37,8 +37,7 @@ def app():
         people_df = pd.DataFrame(data,columns=['Zeit','Geschlecht','Alter'])
         #people_df = people_df.set_index('Zeit')
         #st.write(people_df)
-        
-        
+            
         # Geschlecht abfragen
         mann = 0
         frau = 0
@@ -66,9 +65,9 @@ def app():
             s = str(people_df['Alter'].iloc[index])
             if s == 'unter 18':
                 unter_18 = unter_18 + 1
-            elif s == 'bis 27 (inkl.)':
+            elif s == 'bis 27 (incl.)':
                 bis_27 = bis_27 + 1
-            elif s == 'bis 65 (inkl.)':
+            elif s == 'bis 65 (inklc.)':
                 bis_65 = bis_65 + 1
             elif s == 'über 65':
                 über_65 = über_65 + 1
