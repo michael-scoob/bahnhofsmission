@@ -17,9 +17,7 @@ st.set_page_config(
     )
 
 #Logo at sidebar
-
 st.sidebar.image('./pic/kisspng-bahnhofsmission-mnchen-hauptbahnhof-diakonia-old-5b2c64b9ce7e02.1766947615296360258458.png',width=3,use_column_width=True)
-
 
 # add pages here
 PAGES = {
@@ -31,8 +29,7 @@ PAGES = {
 st.title("Meine Bahnhofsmission")
 msg="Anwendung für Bahnhofsmissionen um \
     die Besucher und die vermittelten Leistunge zur erfassen \
-    und statistisch auszuwerten."
-    
+    und statistisch auszuwerten."    
 st.write(msg)
 
 # Login

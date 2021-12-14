@@ -56,9 +56,6 @@ def app():
         service_list,
         ['Aufenthalt'],key=22)
 
-
-
-
     p = person(gender,age,situation,service)
     
     person_data = p.getData()

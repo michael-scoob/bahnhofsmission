@@ -30,14 +30,8 @@ def app():
         data = db.getAllData() #methode return a df 
         #--------------------------------------------------------------
         # Personen Statistik
-        st.markdown('----')
-        #st.subheader('Personen Statistik')
-        
-
+        st.markdown('----')  
         people_df = pd.DataFrame(data,columns=['Zeit','Geschlecht','Alter'])
-        #people_df = people_df.set_index('Zeit')
-        #st.write(people_df)
-            
         # Geschlecht abfragen
         mann = 0
         frau = 0
@@ -53,7 +47,8 @@ def app():
                 mann = mann + 1
             elif s == 'Frau':
                 frau = frau + 1
-        #st.write("Männer: " + str(mann) + " | Frauen: " + str(frau) + " | Divers: " + str(divers))
+        # Debug
+        # st.write("Männer: " + str(mann) + " | Frauen: " + str(frau) + " | Divers: " + str(divers))
 
         # Alter abfrage
         unter_18 = 0
@@ -73,7 +68,8 @@ def app():
                 über_65 = über_65 + 1
             else: 
                 people_df['Alter'].iloc[index] = str('0')
-        #st.write("unter 18: " + str(unter_18) + " | bis 27: " + str(bis_27) + " |  bis 65: " + str(bis_65) + " | über 65: " + str(über_65))
+        # Debug
+        # st.write("unter 18: " + str(unter_18) + " | bis 27: " + str(bis_27) + " |  bis 65: " + str(bis_65) + " | über 65: " + str(über_65))
 
         st.title("Besucher gesamt" )
         
@@ -102,11 +98,6 @@ def app():
 
         st.markdown('----')
 
-
-
-
-
-
         #--------------------------------------------------------------
         # Download button
         @st.cache
@@ -128,7 +119,6 @@ def app():
         st.title("Leistungsübersicht")
 
         # put and separete values of service into service df
-
         for index , row in db_df.iterrows():
             value = str(db_df['Leistung'].iloc[index])
             service_db_value_list =  value.split(';')
