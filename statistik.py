@@ -62,7 +62,7 @@ def app():
                 unter_18 = unter_18 + 1
             elif s == 'bis 27 (incl.)':
                 bis_27 = bis_27 + 1
-            elif s == 'bis 65 (inklc.)':
+            elif s == 'bis 65 (inclk.)':
                 bis_65 = bis_65 + 1
             elif s == 'über 65':
                 über_65 = über_65 + 1
