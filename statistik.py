@@ -9,9 +9,17 @@ import altair as alt
 from backend.database import database
 from backend.defines import DEFINES
 
+
+# Download button
+@st.cache
+def convert_df(df):
+# IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
+
+
+
 def app():
     st.title('Statistik')
-    st.write('Auswertung der Daten über auszuwählende Zeiträume.')
     year=str(datetime.date.year)
     month=str(datetime.date.month)
     day=str(datetime.date.day)
@@ -28,10 +36,12 @@ def app():
     else:
         db = database()
         data = db.getAllData() #methode return a df 
-        #--------------------------------------------------------------
+    
         # Personen Statistik
         st.markdown('----')  
         people_df = pd.DataFrame(data,columns=['Zeit','Geschlecht','Alter'])
+        
+        #--------------------------------------------------------------
         # Geschlecht abfragen
         mann = 0
         frau = 0
@@ -49,7 +59,8 @@ def app():
                 frau = frau + 1
         # Debug
         # st.write("Männer: " + str(mann) + " | Frauen: " + str(frau) + " | Divers: " + str(divers))
-
+        
+        #--------------------------------------------------------------
         # Alter abfrage
         unter_18 = 0
         bis_27 = 0
@@ -70,11 +81,11 @@ def app():
                 people_df['Alter'].iloc[index] = str('0')
         # Debug
         # st.write("unter 18: " + str(unter_18) + " | bis 27: " + str(bis_27) + " |  bis 65: " + str(bis_65) + " | über 65: " + str(über_65))
-
+        
+        #--------------------------------------------------------------
+        # Besucher
         st.title("Besucher gesamt" )
-        
         time = [str(sd)]
-        
         people_list=[]
         people_list.append([mann,frau,divers])
         people_list_df = pd.DataFrame(people_list,columns=['Männlich', 'Weiblich','Divers'])
@@ -85,6 +96,8 @@ def app():
         st.bar_chart(people_list_df)
         st.write(people_list_df)
         
+        #--------------------------------------------------------------
+        # Altersgruppen
         st.title("Altersgruppen")
         age_list=[]
         age_list.append([unter_18,bis_27,bis_65,über_65])
@@ -95,20 +108,11 @@ def app():
         st.bar_chart(age_list_df)
         st.write(age_list_df)
         
-
-        st.markdown('----')
-
         #--------------------------------------------------------------
-        # Download button
-        @st.cache
-        def convert_df(df):
-        # IMPORTANT: Cache the conversion to prevent computation on every rerun
-            return df.to_csv().encode('utf-8')
-        csv = convert_df(data)
-
+        
         # Create df with time and service from db data
         db_df = pd.DataFrame(data,columns=['Zeit','Leistung'])
-
+        csv = convert_df(data)
         # Get the define of services and create service df
         service_list = DEFINES.getServiceList()
         time = db_df['Zeit']
