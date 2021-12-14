@@ -11,8 +11,10 @@ db = database()
 def app():
 
     st.subheader('Personen erfassen')
-    st.write('Hier bitte Geschlecht, Alter und Lebenslage erfassen. Zur Übernahme in die Statistik bitte Button "Übernehmen" drücken. \
-        SIe haben die Möglichkeit auch nur die erbrachte Leistung zu übernehmen. Hierfür bitte "Nur Leistung übernehmen" drücken.')
+    st.write('Hier bitte Geschlecht, Alter und Lebenslage erfassen. Leistungen können seperat erfasst werden. \
+        \
+        Zur Übernahme aller Daten in die Statistik bitte Button "Übernehmen" drücken. \
+        Sie haben die Möglichkeit auch nur die erbrachte Leistung zu übernehmen. Hier für bitte "Nur Leistung übernehmen" drücken.')
     
     # container
     c1, c2 = st.columns((1, 1))
