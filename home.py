@@ -18,7 +18,9 @@ st.set_page_config(
 
 #Logo at sidebar
 st.sidebar.image('./pic/kisspng-bahnhofsmission-mnchen-hauptbahnhof-diakonia-old-5b2c64b9ce7e02.1766947615296360258458.png',width=3,use_column_width=True)
-
+st.sidebar.markdown('----')
+st.sidebar.metric(label="Temperatur Frankfurt .a.M.", value="13 °C", delta="1.2 °C")
+st.sidebar.markdown('----')
 # add pages here
 PAGES = {
     "Erfassen"  : erfassung,
@@ -45,4 +47,5 @@ if a.getLoginStatus() == True:
     page = PAGES[selection]
     page.app()
 
+    
     st.markdown("_____")

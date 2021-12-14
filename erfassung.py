@@ -54,7 +54,7 @@ def app():
         ['mit sozialen Schwierigkeiten'],key=11)
 
     service_list = DEFINES.getServiceList()
-    service = st.multiselect('Wir haben folgende Leistung erbracht ... ',
+    service = st.multiselect('Wir haben folgende Leistung(en) erbracht ... ',
         service_list,
         ['Aufenthalt'],key=22)
 
