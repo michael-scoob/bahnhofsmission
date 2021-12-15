@@ -77,7 +77,7 @@ class auth():
                    
 
         elif choice == "SignUp":
-            st.subheader("Hier kann ein neuer Account angeegt werden ...")
+            st.subheader("Hier kann ein neuer Account angelegt werden ...")
             new_user = st.text_input("Username")
             new_password = st.text_input("Password",type='password')
 
