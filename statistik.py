@@ -144,8 +144,17 @@ def app():
         st.write(timeslice)
 
         st.markdown('----')
-        st.subheader("Alle Daten downloaden ")
-        st.download_button(
+        st.subheader("Alle Daten anschauen oder downloaden ")
+        c1, c2 , c3 , c4 = st.columns((1, 1, 1, 1)) 
+        
+        if c1.button("Daten anschauen!",key="dw"):
+            db = database()
+            db_data = db.getAllData()
+            st.table(db_data)
+        
+        
+        
+        c2.download_button(
             label="Download",
             data=csv,
             file_name=str(today) + '.csv',
@@ -159,10 +168,7 @@ def app():
         # except FileNotFoundError:
         #     st.error('File not found.')
 
-        if st.button("Daten anschauen!",key="dw"):
-            db = database()
-            db_data = db.getAllData()
-            st.table(db_data)
+
 
 
     
