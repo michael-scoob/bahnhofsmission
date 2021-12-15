@@ -43,3 +43,6 @@ https://docs.streamlit.io/knowledge-base/tutorials/databases/postgresql
 
 # How to Add A Login & Sign-up Section 
 https://blog.jcharistech.com/2020/05/30/how-to-add-a-login-section-to-streamlit-blog-app/
+
+# How to Streamlit in Docker
+https://www.section.io/engineering-education/how-to-deploy-streamlit-app-with-docker/

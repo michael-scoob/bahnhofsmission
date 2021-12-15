@@ -151,9 +151,7 @@ def app():
             db = database()
             db_data = db.getAllData()
             st.table(db_data)
-        
-        
-        
+          
         c2.download_button(
             label="Download",
             data=csv,

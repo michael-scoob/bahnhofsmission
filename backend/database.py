@@ -8,7 +8,6 @@ class database():
         self.create_persontable()
         pass
     
-    # DB - Methodes
     def create_persontable(self):
         self.c_1.execute('CREATE TABLE IF NOT EXISTS persontable(daytime TEXT,gender TEXT,age TEXT, situation Text, leistung TEXT)')
     
