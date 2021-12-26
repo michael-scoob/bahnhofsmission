@@ -51,12 +51,12 @@ def app():
     person_atribute_list=DEFINES.getPersonAtributeList()
     situation = st.multiselect('Die Person befindet sich in den folgenden Lebenslage(n) ... ',
         person_atribute_list,
-        ['mit sozialen Schwierigkeiten'],key=11)
+        key=11)
 
     service_list = DEFINES.getServiceList()
     service = st.multiselect('Wir haben folgende Leistung(en) erbracht ... ',
         service_list,
-        ['Aufenthalt'],key=22)
+        key=22)
 
     p = person(gender,age,situation,service)
     

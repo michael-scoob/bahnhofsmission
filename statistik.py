@@ -95,7 +95,7 @@ def app():
         people_list_df = people_list_df.set_index('Zeit')
         st.bar_chart(people_list_df)
         st.write(people_list_df)
-        
+        st.markdown('----')
         #--------------------------------------------------------------
         # Altersgruppen
         st.title("Altersgruppen")
@@ -118,6 +118,7 @@ def app():
         time = db_df['Zeit']
         _df = pd.DataFrame(columns=service_list)
         _df.insert(loc=0,column='Zeit',value=time)
+        #st.write(_df)
         service_df = pd.DataFrame(_df)
         st.markdown('----')
         st.title("Leistungsübersicht")
@@ -139,9 +140,10 @@ def app():
         timeslice =service_time_df.loc[str(sd):str(ed)]
         timeslice = timeslice.sort_index()
         timeslice = timeslice.groupby(timeslice.index)[service_list].sum()
-        st.bar_chart(timeslice[service_list])
+        # st.bar_chart(timeslice[service_list])
+        st.bar_chart(service_time_df)
         st.subheader("Summe der Leistung im Zeitraum")
-        st.write(timeslice)
+        st.write(service_time_df)
 
         st.markdown('----')
         st.subheader("Alle Daten anschauen oder downloaden ")

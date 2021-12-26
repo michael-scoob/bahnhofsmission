@@ -18,7 +18,16 @@ st.set_page_config(
 
 #Logo at sidebar
 #st.sidebar.image('./pic/kisspng-bahnhofsmission-mnchen-hauptbahnhof-diakonia-old-5b2c64b9ce7e02.1766947615296360258458.png',width=3,use_column_width=True)
-st.sidebar.markdown('----')
+
+
+# st.sidebar.title("Meine Bahnhofsmission")
+# msg="Anwendung für Bahnhofsmissionen um \
+#     die Besucher und die vermittelten Leistunge zur erfassen \
+#     und statistisch auszuwerten."    
+# st.sidebar.write(msg)
+
+# st.sidebar.markdown('----')
+
 c1, c2 = st.sidebar.columns(2)
 c2.metric(label="Temperatur", value="13 °C", delta="1.2 °C")
 c1.image('./kisspng-bahnhofsmission-mnchen-hauptbahnhof-diakonia-old-5b2c64b9ce7e02.1766947615296360258458.png',width=3,use_column_width=True)
@@ -30,11 +39,7 @@ PAGES = {
 }
 
 # Page: Home
-st.title("Meine Bahnhofsmission")
-msg="Anwendung für Bahnhofsmissionen um \
-    die Besucher und die vermittelten Leistunge zur erfassen \
-    und statistisch auszuwerten."    
-st.write(msg)
+
 
 # Login
 a=auth()
@@ -42,7 +47,7 @@ login_status = a.auth_run()
 
 if a.getLoginStatus() == True:
     # navigation to page
-    st.markdown("_____")
+    #st.markdown("_____")
 
     st.sidebar.title('Navigation')
     selection = st.sidebar.radio(" ", list(PAGES.keys()))
@@ -50,4 +55,4 @@ if a.getLoginStatus() == True:
     page.app()
 
     
-    st.markdown("_____")
+    #st.markdown("_____")
