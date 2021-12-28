@@ -28,9 +28,9 @@ st.set_page_config(
 
 # st.sidebar.markdown('----')
 
-c1, c2 = st.sidebar.columns(2)
-c2.metric(label="Temperatur", value="13 °C", delta="1.2 °C")
-c1.image('./kisspng-bahnhofsmission-mnchen-hauptbahnhof-diakonia-old-5b2c64b9ce7e02.1766947615296360258458.png',width=3,use_column_width=True)
+c1, c2 , c3 = st.sidebar.columns(3)
+#c2.metric(label="Temperatur", value="13 °C", delta="1.2 °C")
+c2.image('./kisspng-bahnhofsmission-mnchen-hauptbahnhof-diakonia-old-5b2c64b9ce7e02.1766947615296360258458.png',width=3,use_column_width=True)
 st.sidebar.markdown('----')
 # add pages here
 PAGES = {
@@ -39,8 +39,6 @@ PAGES = {
 }
 
 # Page: Home
-
-
 # Login
 a=auth()
 login_status = a.auth_run()
