@@ -30,7 +30,8 @@ st.set_page_config(
 
 c1, c2 , c3 = st.sidebar.columns(3)
 #c2.metric(label="Temperatur", value="13 °C", delta="1.2 °C")
-c2.image('./kisspng-bahnhofsmission-mnchen-hauptbahnhof-diakonia-old-5b2c64b9ce7e02.1766947615296360258458.png',width=3,use_column_width=True)
+#c2.image('./kisspng-bahnhofsmission-mnchen-hauptbahnhof-diakonia-old-5b2c64b9ce7e02.1766947615296360258458.png',width=3,use_column_width=True)
+st.image('./kisspng-bahnhofsmission-mnchen-hauptbahnhof-diakonia-old-5b2c64b9ce7e02.1766947615296360258458.png',width=3,use_column_width=True)
 st.sidebar.markdown('----')
 # add pages here
 PAGES = {
