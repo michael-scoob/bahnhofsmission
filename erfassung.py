@@ -72,21 +72,33 @@ def app():
     c3, c4 = st.columns((1, 1))    
     
     if c3.button("Übernehmen",key=c):
-        
+        time = str(datetime.date.today())
+        time+=";"
+        gender+=";"
+        age+=";"
         live = ""
         service_data = ""
-        for n in situation:
-            live += ''+ n + ';'
-        for n in service:
-            service_data += ''+ n + ';'
-            
-        time = str(datetime.date.today())
+
+        if len(situation) != 0:
+            for n in situation:
+                live += ''+ n + ';'
+        else:
+            live += ";"
+
+        if len(service) != 0:
+            for n in service:
+                service_data += ''+ n + ';'
+        else:
+            service_data += ";"
+
         db.add_persondata(time,gender,age,live,service_data)
         c3.success("Werte übernommen!")
     else:
         st.text(" ")
         
     if c4.button("Nur Leistung übernehmen",key=c):
+        time = str(datetime.date.today())
+        time+=";"
         gender=";"
         age=";"
         live = ";"
@@ -94,7 +106,7 @@ def app():
 
         for n in service:
             service_data += ''+ n + ';'
-        time = str(datetime.date.today())    
+           
         db.add_persondata(time,gender,age,live,service_data)
         c4.success("Leistung übernommen!")
     else:

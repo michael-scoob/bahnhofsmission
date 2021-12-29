@@ -10,11 +10,20 @@ from backend.database import database
 from backend.defines import DEFINES
 
 
+
 # Download button
 @st.cache
 def convert_df(df):
 # IMPORTANT: Cache the conversion to prevent computation on every rerun
     return df.to_csv().encode('utf-8')
+
+
+def clear_data():
+    db = database()
+    db.clearAllData()
+    db_data = db.getAllData()
+    st.table(db_data)
+
 
 def app():
     st.title('Statistik')
@@ -23,11 +32,11 @@ def app():
     today = datetime.date.today()
     
   
-    st.subheader("Alle Daten anschauen oder downloaden ")
+    st.subheader("Alle Daten downloaden oder löschen")
     c1, c2 , c3 , c4 = st.columns((1, 1, 1, 1)) 
     
     if c1.button("Daten anzeigen",key="dw"):
-        #db = database()
+        db = database()
         db_data = db.getAllData()
         st.table(db_data)
     
@@ -37,13 +46,8 @@ def app():
         data=csv,
         file_name=str(today) + '.csv',
         mime='text/csv',)
-
-    if c4.button("Alle Daten löschen",key="adl"):
-        db.clearAllData()
-        db_data = db.getAllData()
-        st.table(db_data)
-
-
-
-
     
+    clr_status = False
+    
+    if c4.button("Alle Daten löschen",key="adl"):
+        clear_data()
