@@ -10,8 +10,9 @@ db = database()
 
 def app():
 
-    st.subheader('Personen erfassen')
-    st.write('Hier bitte Geschlecht, Alter und Lebenslage erfassen. Leistungen können seperat erfasst werden. \
+    st.subheader('Besucher erfassen')
+    st.write('Hier bitte für Besucher das Geschlecht, Alter und Lebenslage erfassen. \
+        Leistungen können seperat erfasst werden. \
         \
         Zur Übernahme aller Daten in die Statistik bitte Button "Übernehmen" drücken. \
         Sie haben die Möglichkeit auch nur die erbrachte Leistung zu übernehmen. Hier für bitte "Nur Leistung übernehmen" drücken.')
