@@ -92,7 +92,7 @@ def app():
         else:
             service_data += ";"
 
-        db.add_persondata(time,gender,age,live,service_data)
+        db.addDataToTable(time,gender,age,live,service_data)
         c3.success("Werte übernommen!")
     else:
         st.text(" ")
@@ -108,7 +108,7 @@ def app():
         for n in service:
             service_data += ''+ n + ';'
            
-        db.add_persondata(time,gender,age,live,service_data)
+        db.addDataToTable(time,gender,age,live,service_data)
         c4.success("Leistung übernommen!")
     else:
         st.text(" ")

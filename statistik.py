@@ -21,14 +21,14 @@ def convert_df(df):
 def clear_data():
     db = database()
     db.clearAllData()
-    db_data = db.getAllData()
+    db_data = db.getDataFrame()
     st.table(db_data)
 
 
 def app():
     st.title('Statistik')
     db = database()
-    data = db.getAllData() #methode return a df 
+    data = db.getDataFrame() #methode return a df 
     today = datetime.date.today()
     
   
@@ -37,7 +37,7 @@ def app():
     
     if c1.button("Daten anzeigen",key="dw"):
         db = database()
-        db_data = db.getAllData()
+        db_data = db.getDataFrame()
         st.table(db_data)
     
     csv = convert_df(data)
