@@ -3,12 +3,12 @@ import sqlite3
 
 class database():
     def __init__(self) -> None:
-        self.conn_1 = sqlite3.connect('data/service_data.db',check_same_thread=False)
+        self.conn_1 = sqlite3.connect('data/service_data.db',check_same_thread=False, isolation_level=None)
         self.c_1 = self.conn_1.cursor()
-        self.create_persontable()
+        self.create_table()
         pass
     
-    def create_persontable(self):
+    def create_table(self):
         self.c_1.execute('CREATE TABLE IF NOT EXISTS persontable(daytime TEXT,gender TEXT,age TEXT, situation Text, leistung TEXT)')
     
     def add_persondata(self,daytime,gender,age,situation,leistung):
@@ -20,6 +20,12 @@ class database():
         data = self.c_1.fetchall()
         return data
     
+    def clearAllData(self):
+        self.c_1.execute('DELETE FROM persontable')
+        self.conn_1.execute('VACUUM')
+        self.conn_1.commit()
+        return
+
     def getAllData(self):
         user_result = self.view_all_person()
         clean_db = pd.DataFrame(user_result,columns=["Zeit","Geschlecht","Alter","Lebenssituation","Leistung"])
