@@ -29,7 +29,7 @@ def app():
     c = c2
     age = ""
     age_list = DEFINES.getAgeList()
-    c.value = c.radio("Alter Test", (age_list),key='ag')
+    c.value = c.radio("Alter", (age_list),key='ag')
     age = c.value
 
     person_atribute_list=DEFINES.getPersonAtributeList()
@@ -38,7 +38,7 @@ def app():
         key=11)
 
     service_list = DEFINES.getServiceList()
-    service = st.multiselect('Wir haben folgende Leistung(en) erbracht ... ',
+    service = st.multiselect('Sie haben folgende Leistung(en) erbracht ... ',
         service_list,
         key=22)
 
