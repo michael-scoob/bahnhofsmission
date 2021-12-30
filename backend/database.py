@@ -9,19 +9,19 @@ class database():
         pass
     
     def create_table(self):
-        self.c_1.execute('CREATE TABLE IF NOT EXISTS persontable(daytime TEXT,gender TEXT,age TEXT, situation Text, leistung TEXT)')
+        self.c_1.execute('CREATE TABLE IF NOT EXISTS ptable(daytime TEXT,gender TEXT,age TEXT, situation Text, leistung TEXT)')
     
     def addDataToTable(self,daytime,gender,age,situation,leistung):
-        self.c_1.execute('INSERT INTO persontable(daytime,gender,age,situation,leistung) VALUES (?,?,?,?,?)',(daytime,gender,age,situation,leistung))
+        self.c_1.execute('INSERT INTO ptable(daytime,gender,age,situation,leistung) VALUES (?,?,?,?,?)',(daytime,gender,age,situation,leistung))
         self.conn_1.commit()
     
     def viewAllData(self):
-        self.c_1.execute('SELECT * FROM persontable')
+        self.c_1.execute('SELECT * FROM ptable')
         data = self.c_1.fetchall()
         return data
     
     def clearAllData(self):
-        self.c_1.execute('DELETE FROM persontable')
+        self.c_1.execute('DELETE FROM ptable')
         self.conn_1.execute('VACUUM')
         self.conn_1.commit()
         return
