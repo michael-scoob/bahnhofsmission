@@ -22,26 +22,16 @@ def app():
 
     c = c1
     gender = ""
-    c.value = c.radio("Geschlecht", ('Mann', 'Frau', 'Divers'),key=c)
-    if c.value == 'Mann':
-        gender = 'Mann'
-    elif c.value == 'Frau':
-        gender = 'Frau'
-    elif c.value == 'Divers':
-        gender = 'Divers'
-    
+    gender_list = DEFINES.getGenderList()
+    c.value = c.radio("Geschlecht", (gender_list),key='cg')
+    gender = c.value
+
     c = c2
-    age=""
-    c.value = c.radio("Alter", ('unter 18', 'bis 27 (inkl.)', 'bis 65 (inkl.)','über 65'),key=c)
-    if c.value == 'unter 18':
-        age='unter 18'
-    elif c.value == 'bis 27 (inkl.)':
-        age='bis 27 (inkl.)'
-    elif c.value == 'bis 65 (inkl.)':
-        age='bis 65 (inkl.)'
-    elif c.value == 'über 65':
-        age='über 65'
-        
+    age = ""
+    age_list = DEFINES.getAgeList()
+    c.value = c.radio("Alter Test", (age_list),key='ag')
+    age = c.value
+
     person_atribute_list=DEFINES.getPersonAtributeList()
     situation = st.multiselect('Die Person befindet sich in den folgenden Lebenslage(n) ... ',
         person_atribute_list,

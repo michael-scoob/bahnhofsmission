@@ -2,6 +2,24 @@
 class DEFINES():
     def __init__(self) -> None:
         pass 
+
+    def getGenderList():
+        GENDER_LIST=[
+            'Mann',
+            'Frau',
+            'Divers'
+        ]
+        return GENDER_LIST
+
+    def getAgeList():
+        AGE_LIST=[
+            'unter 18',
+            'bis 27 (inkl.)',
+            'bis 65 (inkl.)',
+            'über 65'
+        ]
+        return AGE_LIST
+
     def getServiceList():
         SERVICE_LIST=[        
             'Aufenthalt',
