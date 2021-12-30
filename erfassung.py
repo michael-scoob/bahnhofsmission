@@ -35,16 +35,16 @@ def app():
     
     c = c2
     age=""
-    c.genre = c.radio("Alter", ('unter 18', 'bis 27 (incl.)', 'bis 65 (inclk.)','über 65'),key=c)
+    c.genre = c.radio("Alter", ('unter 18', 'bis 27 (inkl.)', 'bis 65 (inkl.)','über 65'),key=c)
     if c.genre == 'unter 18':
         age='unter 18'
         c.write('unter 18')
-    elif c.genre == 'bis 27 (incl.)':
-        age='bis 27 (incl.)'
-        c.write('bis 27 (incl.)')
-    elif c.genre == 'bis 65 (inclk.)':
-        age='bis 65 (inclk.)'
-        c.write('bis 65 (inclk.).')
+    elif c.genre == 'bis 27 (inkl.)':
+        age='bis 27 (inkl.)'
+        c.write('bis 27 (inkl.)')
+    elif c.genre == 'bis 65 (inkl.)':
+        age='bis 65 (inkl.)'
+        c.write('bis 65 (inkl.).')
     elif c.genre == 'über 65':
         age='über 65'
         c.write('über 65')
