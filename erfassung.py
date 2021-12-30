@@ -74,9 +74,9 @@ def app():
     
     if c3.button("Übernehmen",key=c):
         time = str(datetime.date.today())
-        time+=";"
-        gender+=";"
-        age+=";"
+        time+=""
+        gender+=""
+        age+=""
         live = ""
         service_data = ""
 
@@ -84,13 +84,13 @@ def app():
             for n in situation:
                 live += ''+ n + ';'
         else:
-            live += ";"
+            live += ""
 
         if len(service) != 0:
             for n in service:
                 service_data += ''+ n + ';'
         else:
-            service_data += ";"
+            service_data += ""
 
         db.addDataToTable(time,gender,age,live,service_data)
         c3.success("Werte übernommen!")
@@ -99,10 +99,10 @@ def app():
         
     if c4.button("Nur Leistung übernehmen",key=c):
         time = str(datetime.date.today())
-        time+=";"
-        gender=";"
-        age=";"
-        live = ";"
+        time+=""
+        gender=""
+        age=""
+        live = ""
         service_data = ""
 
         for n in service:
