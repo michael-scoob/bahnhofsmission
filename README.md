@@ -1,4 +1,16 @@
 # README 
+This is an app for recording visitors to the station mission in Germany. The aim of the app is to simplify the manual recording of visitors and services on paper and to enable the data to be exported. 
+
+## Information about the Bahnhofsmission
+https://de.wikipedia.org/wiki/Bahnhofsmission
+
+
+# Licence
+## "THE BEER-WARE LICENSE" (Revision 42):
+<michae@scoob-innovation.de> wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think
+this stuff is worth it, you can buy me a beer in return 
+
+# Dev Doc
 
 ## Create a Virtual Python Environment
 https://mothergeo-py.readthedocs.io/en/latest/development/how-to/venv-win.html
