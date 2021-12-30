@@ -22,32 +22,25 @@ def app():
 
     c = c1
     gender = ""
-    c.genre = c.radio("Geschlecht", ('Mann', 'Frau', 'Divers'),key=c)
-    if c.genre == 'Mann':
+    c.value = c.radio("Geschlecht", ('Mann', 'Frau', 'Divers'),key=c)
+    if c.value == 'Mann':
         gender = 'Mann'
-        c.write('Mann.')
-    elif c.genre == 'Frau':
+    elif c.value == 'Frau':
         gender = 'Frau'
-        c.write('Frau.')
-    elif c.genre == 'Divers':
+    elif c.value == 'Divers':
         gender = 'Divers'
-        c.write('Divers.')
     
     c = c2
     age=""
-    c.genre = c.radio("Alter", ('unter 18', 'bis 27 (inkl.)', 'bis 65 (inkl.)','über 65'),key=c)
-    if c.genre == 'unter 18':
+    c.value = c.radio("Alter", ('unter 18', 'bis 27 (inkl.)', 'bis 65 (inkl.)','über 65'),key=c)
+    if c.value == 'unter 18':
         age='unter 18'
-        c.write('unter 18')
-    elif c.genre == 'bis 27 (inkl.)':
+    elif c.value == 'bis 27 (inkl.)':
         age='bis 27 (inkl.)'
-        c.write('bis 27 (inkl.)')
-    elif c.genre == 'bis 65 (inkl.)':
+    elif c.value == 'bis 65 (inkl.)':
         age='bis 65 (inkl.)'
-        c.write('bis 65 (inkl.).')
-    elif c.genre == 'über 65':
+    elif c.value == 'über 65':
         age='über 65'
-        c.write('über 65')
         
     person_atribute_list=DEFINES.getPersonAtributeList()
     situation = st.multiselect('Die Person befindet sich in den folgenden Lebenslage(n) ... ',
