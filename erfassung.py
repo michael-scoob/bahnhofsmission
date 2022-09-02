@@ -71,7 +71,7 @@ def app():
         
     c3, c4 = st.columns((1, 1))    
     
-    if c3.button("Übernehmen",key=c):
+    if c3.button("Übernehmen",key=3 ):
         
         live = ""
         service_data = ""
@@ -86,7 +86,7 @@ def app():
     else:
         st.text(" ")
         
-    if c4.button("Nur Leistung übernehmen",key=c):
+    if c4.button("Nur Leistung übernehmen",key=4):
         gender=";"
         age=";"
         live = ";"

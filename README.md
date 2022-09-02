@@ -15,7 +15,7 @@ Open CMD and do ..
 
 ```bash
 cd my-project
-virtualenv --python C:\Path\To\Python\python.exe venv
+virtualenv --python <\Path\To\Python>\python.exe venv
 ```
 
 ## Activate the Environment
@@ -24,7 +24,7 @@ virtualenv --python C:\Path\To\Python\python.exe venv
 ```
 ## Doc Streamlit
 
-### Instatlatio
+### Instatlation
 https://docs.streamlit.io/library/get-started/installation
 
 ### API Ref
